@@ -1,5 +1,51 @@
 @import "tailwindcss";
 
+html.custom-scrollbar-ready { scrollbar-width: none; }
+html.custom-scrollbar-ready::-webkit-scrollbar { display: none; }
+.animated-scrollbar {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: 14px;
+  z-index: 1000;
+  background: #141923;
+  border-left: 1px solid #ffffff15;
+  touch-action: none;
+  user-select: none;
+}
+.animated-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 3px;
+  width: 8px;
+  border-radius: 8px;
+  background: #6a7393;
+  overflow: hidden;
+  transition: background 180ms, box-shadow 300ms;
+  cursor: grab;
+}
+.animated-scrollbar:is(.is-scrolling, .is-dragging) .animated-scrollbar-thumb {
+  background: #a5f3fc;
+  box-shadow: 0 0 10px #22d3ee, 0 0 22px #8b5cf6;
+}
+.animated-scrollbar.is-dragging .animated-scrollbar-thumb { cursor: grabbing; }
+.scrollbar-electricity {
+  position: absolute;
+  inset: -100% 0;
+  opacity: 0;
+  background: repeating-linear-gradient(165deg, transparent 0 14px, #8b5cf6 18px, #fff 21px, #22d3ee 24px, transparent 30px 48px);
+}
+.animated-scrollbar:is(.is-scrolling, .is-dragging) .scrollbar-electricity {
+  opacity: 1;
+  animation: scrollbar-current 450ms linear infinite;
+}
+@keyframes scrollbar-current {
+  from { transform: translateY(-48px); }
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animated-scrollbar .scrollbar-electricity { animation: none !important; }
+}
+
 :root {
   --bg: #151613;
   --surface: #1d1e1a;
@@ -17,6 +63,33 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 105px;
+}
+/* Keep the browser's draggable scrollbar; animate its thumb during scrolling. */
+html::-webkit-scrollbar {
+  width: 14px;
+}
+html::-webkit-scrollbar-track {
+  background: #1d1e1a;
+  border-left: 1px solid #34352e;
+}
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #789749);
+  border: 3px solid #1d1e1a;
+  border-radius: 12px;
+  box-shadow: inset 0 0 var(--scrollbar-glow, 0px) #f4ffcf;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb, #c5f574);
+}
+html::-webkit-scrollbar-button {
+  background: #24251f;
+  height: 10px;
+}
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb, #789749) #1d1e1a;
+  }
 }
 body {
   margin: 0;

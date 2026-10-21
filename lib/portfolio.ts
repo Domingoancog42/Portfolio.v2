@@ -17,10 +17,11 @@ export type Project = {
   description: string;
   detail: string;
   tags: string[];
-  preview: "badge" | "forma" | "orbit" | "hris" | "shopping" | "horror";
+  preview: "badge" | "forma" | "orbit" | "hris" | "shopping" | "horror" | "sailing";
   categoryLabel?: string;
   role?: string;
   partner?: string;
+  playUrl?: string;
 };
 
 const hrisDescription =
@@ -70,3 +71,18 @@ export const projects: Project[] = [1, 2, 3].map((number): Project =>
           preview: "hris",
         },
 );
+
+projects.push({
+  id: "boat-sailing-open-world",
+  playUrl: "https://boat-sailing-open-world.netlify.app/",
+  title: "Boat Sailing: Open World",
+  category: "Development",
+  categoryLabel: "3D Open-World Game",
+  label: "Boat Sailing: Open World",
+  description:
+    "An open-world boat-sailing experience built for the browser with JavaScript, Three.js r186, and TSL.",
+  detail:
+    "A browser-based open-world boat-sailing project built with JavaScript and Three.js r186, using TSL (Three.js Shading Language) for shaders and HTML and CSS for the interface.",
+  tags: ["JavaScript", "Three.js r186", "TSL (Three.js Shading Language)", "HTML", "CSS"],
+  preview: "sailing",
+});

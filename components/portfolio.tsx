@@ -69,6 +69,17 @@ function Spark({ className = "" }: { className?: string }) {
 
 function ProjectPreview({ kind }: { kind: Project["preview"] }) {
   const gradientId = useId();
+  if (kind === "sailing")
+    return (
+      <div className="project-preview preview-project-image">
+        <Image
+          src="/assets/images/boat-sailing.png"
+          alt="Wayfarer boat-sailing open-world project with a sailboat on the open ocean"
+          fill
+          sizes="(max-width: 620px) 90vw, (max-width: 900px) 45vw, 400px"
+        />
+      </div>
+    );
   if (kind === "horror")
     return (
       <div className="project-preview preview-project-image">
@@ -323,7 +334,17 @@ function ProjectDialog({
                 <span key={tag}>{tag}</span>
               ))}
             </div>
-            {project.id === "badge" ? (
+            {project.playUrl ? (
+              <a
+                className="button button-primary"
+                href={project.playUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Play ${project.label} (opens in a new tab)`}
+              >
+                <span aria-hidden="true">&#9654;</span> Play <Arrow diagonal />
+              </a>
+            ) : project.id === "badge" ? (
               <a
                 className="button button-primary"
                 href="#home"

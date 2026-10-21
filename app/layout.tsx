@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ShootingStars from "@/components/shooting-stars";
+import ScrollbarAnimation from "@/components/scrollbar-animation";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/reference.css";
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ShootingStars />
+        <ScrollbarAnimation />
         {children}
       </body>
     </html>
