@@ -17,11 +17,12 @@ export type Project = {
   description: string;
   detail: string;
   tags: string[];
-  preview: "badge" | "forma" | "orbit" | "hris" | "shopping" | "horror" | "sailing";
+  preview: "badge" | "forma" | "orbit" | "hris" | "shopping" | "horror" | "sailing" | "pikolcastle";
   categoryLabel?: string;
   role?: string;
   partner?: string;
   playUrl?: string;
+  websiteUrl?: string;
 };
 
 const hrisDescription =
@@ -71,6 +72,19 @@ export const projects: Project[] = [1, 2, 3].map((number): Project =>
           preview: "hris",
         },
 );
+
+projects.push({
+  id: "pikol-castle",
+  title: "Pikol Castle",
+  category: "Development",
+  categoryLabel: "Website",
+  label: "Pikol Castle",
+  description: "A website built with HTML, Tailwind CSS, JavaScript, and PHP.",
+  detail: "Pikol Castle is a web development project built with HTML, Tailwind CSS, JavaScript, and PHP. Visit the live website to explore the project.",
+  tags: ["HTML", "Tailwind CSS", "JavaScript", "PHP"],
+  preview: "pikolcastle",
+  websiteUrl: "https://pikol-castle.great-site.net/",
+});
 
 projects.push({
   id: "boat-sailing-open-world",

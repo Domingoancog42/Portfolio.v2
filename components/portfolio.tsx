@@ -69,6 +69,17 @@ function Spark({ className = "" }: { className?: string }) {
 
 function ProjectPreview({ kind }: { kind: Project["preview"] }) {
   const gradientId = useId();
+  if (kind === "pikolcastle")
+    return (
+      <div className="project-preview preview-project-image">
+        <Image
+          src="/assets/images/pikolcastle.png"
+          alt="Pikol Castle website preview"
+          fill
+          sizes="(max-width: 620px) 90vw, (max-width: 900px) 45vw, 400px"
+        />
+      </div>
+    );
   if (kind === "sailing")
     return (
       <div className="project-preview preview-project-image">
@@ -334,7 +345,17 @@ function ProjectDialog({
                 <span key={tag}>{tag}</span>
               ))}
             </div>
-            {project.playUrl ? (
+            {project.websiteUrl ? (
+              <a
+                className="button button-primary"
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${project.label} website (opens in a new tab)`}
+              >
+                Visit website <Arrow diagonal />
+              </a>
+            ) : project.playUrl ? (
               <a
                 className="button button-primary"
                 href={project.playUrl}
