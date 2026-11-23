@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import ShootingStars from "@/components/shooting-stars";
 import ScrollbarAnimation from "@/components/scrollbar-animation";
+import RocketEntrance from "@/components/rocket-entrance";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/reference.css";
+import "@/styles/rocket-entrance.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <RocketEntrance />
         <ShootingStars />
         <ScrollbarAnimation />
         {children}

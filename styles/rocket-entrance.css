@@ -1,0 +1,162 @@
+.rocket-entrance {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  overflow: hidden;
+  background: #070a16;
+  color: #f6f7fc;
+  animation: rocket-reveal 5000ms ease-in both;
+}
+
+.rocket-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 85%, #00c8ef14, transparent 50%),
+    url("/stars.svg") center / 900px 650px;
+}
+
+.rocket-streak {
+  position: absolute;
+  top: -180px;
+  left: var(--streak-x);
+  width: 1px;
+  height: var(--streak-length);
+  background: linear-gradient(transparent, #c5d3ef65);
+  animation: rocket-star-stream var(--streak-duration) linear 14;
+  animation-delay: var(--streak-delay);
+}
+
+.rocket-asteroid {
+  position: absolute;
+  top: -140px;
+  left: var(--asteroid-x);
+  width: var(--asteroid-size);
+  height: var(--asteroid-size);
+  margin-left: calc(var(--asteroid-size) / -2);
+  animation: rocket-asteroid-pass var(--asteroid-duration) linear 4 both;
+  animation-delay: var(--asteroid-delay);
+}
+
+.rocket-asteroid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(24% 5%, 58% 0, 86% 16%, 100% 44%, 89% 75%, 64% 96%, 31% 100%, 7% 77%, 0 39%);
+  border-radius: 38% 54% 46% 43%;
+  background:
+    radial-gradient(ellipse at 33% 30%, #151b2a 0 9%, #9aa3b34d 11%, transparent 15%),
+    radial-gradient(ellipse at 67% 64%, #181f30 0 13%, #8c97aa40 15%, transparent 20%),
+    radial-gradient(circle at 26% 72%, #252d40 0 6%, transparent 10%),
+    linear-gradient(135deg, #a0a8b7, #616c80 36%, #303b50 70%, #151e31);
+  animation: rocket-asteroid-spin 3600ms linear 3;
+  animation-delay: var(--asteroid-delay);
+}
+
+.rocket-vehicle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(58px, 6vw, 76px);
+  margin-left: clamp(-38px, -3vw, -29px);
+  animation: rocket-liftoff 4500ms cubic-bezier(0.5, 0, 0.8, 0.4) both;
+}
+
+.rocket-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: rocket-ignition 120ms ease-in-out 7;
+}
+
+.rocket-exhaust {
+  position: absolute;
+  top: calc(100% - 8px);
+  left: 50%;
+  width: 12px;
+  height: clamp(140px, 25vh, 240px);
+  margin-left: -6px;
+  transform-origin: top;
+  background: linear-gradient(#f0fcff, #5eeaff 12%, #00bddb99 48%, transparent);
+  animation: rocket-engine 4500ms ease-in both;
+}
+
+.rocket-exhaust::before {
+  content: "";
+  position: absolute;
+  inset: 0 -9px;
+  background: linear-gradient(#3beaff99, #00bddb60 40%, transparent);
+  filter: blur(7px);
+}
+
+.rocket-caption {
+  position: absolute;
+  right: 24px;
+  bottom: max(44px, env(safe-area-inset-bottom));
+  left: 24px;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #afb5c9;
+  animation: rocket-caption-fade 4200ms ease both;
+}
+
+.rocket-caption > span {
+  display: block;
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f6f7fc;
+}
+
+@keyframes rocket-star-stream {
+  to { transform: translateY(calc(100vh + 360px)); }
+}
+
+@keyframes rocket-asteroid-pass {
+  to { transform: translate3d(var(--asteroid-drift), calc(100vh + 300px), 0); }
+}
+
+@keyframes rocket-asteroid-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rocket-ignition {
+  0%, 100% { transform: translateX(-1px); }
+  50% { transform: translateX(1px); }
+}
+
+@keyframes rocket-liftoff {
+  0%, 30% { transform: translateY(10vh); }
+  45% { transform: translateY(6vh); }
+  100% { transform: translateY(calc(-65vh - 150px)); }
+}
+
+@keyframes rocket-engine {
+  0% { opacity: 0; transform: scaleY(0.2); }
+  14% { opacity: 0.85; transform: scaleY(0.6); }
+  20% { opacity: 0.6; transform: scaleY(0.45); }
+  32% { opacity: 1; transform: scaleY(0.8); }
+  100% { opacity: 1; transform: scaleY(1.4); }
+}
+
+@keyframes rocket-caption-fade {
+  0%, 65% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes rocket-reveal {
+  0%, 72% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocket-entrance { display: none; }
+  .rocket-entrance,
+  .rocket-entrance *,
+  .rocket-entrance *::before { animation: none; }
+}
