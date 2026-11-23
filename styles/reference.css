@@ -1773,13 +1773,11 @@ body::before {
   z-index: -1;
   opacity: 1;
   background:
-    linear-gradient(#ffffff04 1px, transparent 1px),
-    linear-gradient(90deg, #ffffff04 1px, transparent 1px),
+    url("/stars.svg") repeat,
     radial-gradient(ellipse at 44% 30%, #5c45e825, transparent 48%),
     radial-gradient(ellipse at 70% 55%, #00c8ef16, transparent 54%);
   background-size:
-    48px 48px,
-    48px 48px,
+    900px 650px,
     100% 100%,
     100% 100%;
 }
