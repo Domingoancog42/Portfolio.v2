@@ -9,7 +9,7 @@ import HomeSocials from "@/components/home-socials";
 import Skills from "@/components/skills";
 import Certificates from "@/components/certificates";
 import JourneyGallery from "@/components/journey-gallery";
-import Typewriter from "@/components/typewriter";
+import SpecialtyFlicker from "@/components/specialty-flicker";
 import { useEffect, useId, useRef, useState, type SVGProps } from "react";
 import { profile, projects, type Project } from "@/lib/portfolio";
 
@@ -409,7 +409,7 @@ export default function Portfolio() {
                 Ancog
               </span>
             </h1>
-            <Typewriter />
+            <SpecialtyFlicker />
             <p className="hero-description">
               A developer with a curious mind and an eye for detail. I enjoy
               bringing ideas to life through web development, thoughtful

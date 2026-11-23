@@ -1192,31 +1192,37 @@ a.home-social-icon:hover {
     display: none;
   }
 }
-.hero-typewriter {
+.hero-specialty {
   min-height: 1.5em;
 }
-.typewriter-prefix {
+.specialty-prefix {
   color: #b8bdd2;
 }
-.typewriter-word {
-  display: inline-block;
+.specialty-word {
+  display: inline-grid;
   white-space: nowrap;
-  min-width: 15ch;
 }
-.typewriter-cursor {
-  display: inline-block;
-  margin-left: 3px;
-  font-weight: 400;
-  animation: typewriter-blink 1s step-end infinite;
+.specialty-word::before {
+  content: "Game Developer";
+  visibility: hidden;
 }
-@keyframes typewriter-blink {
-  50% {
-    opacity: 0;
-  }
+.specialty-word::before,
+.specialty-letters {
+  grid-area: 1 / 1;
+}
+.specialty-letter {
+  animation: specialty-flicker 850ms step-end both;
+  animation-delay: var(--flicker-delay);
+}
+@keyframes specialty-flicker {
+  0%, 22% { opacity: 0.08; }
+  12%, 38% { opacity: 0.85; }
+  30%, 46% { opacity: 0.25; }
+  62%, 100% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .typewriter-cursor {
-    display: none;
+  .specialty-letter {
+    animation: none;
   }
 }
 .container.tool-section {
